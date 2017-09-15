@@ -1,24 +1,20 @@
 def isbn_cleaner(isbn)
 	isbn = isbn.gsub(/[-]/,'')
 	isbn = isbn.gsub(/[ ]/,'')
+	isbn_length_check(isbn)
 end	
 			
 
-#p isbn_alpha_check("8637a028b0")
-p isbn_alpha_check("401703793x")
-
 def isbn_length_check(isbn)
-	isbn = isbn_cleaner(isbn)
 	if isbn.length == 10
-		true
+		alpha_check10(isbn)
 	elsif isbn.length == 13
-		true
+		alpha_check13(isbn)
 	else 
 		false	
 	end
 end		
 
-	
 
 
 def alpha_check10(isbn)
@@ -34,12 +30,12 @@ def alpha_check10(isbn)
 	end	
 	 
 	if (upper-isbn).size == 26&& (lower-isbn).size == 26
-		p "Valid ISBN"
+		check_digit_generator10(isbn)
 	else	
-		p "not valid"
+		false
 	end
 end	
-alpha_check10("12355679")
+# alpha_check10("12355679")
 
 def alpha_check13(isbn)
 	upper = *("A".."Z")
@@ -47,16 +43,16 @@ def alpha_check13(isbn)
 	isbn = isbn.chars
 	 
 	if (upper-isbn).size == 26&& (lower-isbn).size == 26
-		p "Valid ISBN"
+		check_digit_13(isbn)
 	else	
-		p "not valid"
+		false
 	end
 end	
-alpha_check13("123556798S387")
+# alpha_check13("123556798S387")
 
 def check_digit_generator10(isbn)
 	arr=[]
-	isbn = isbn.chars
+	
 	check = isbn.pop
 	check = check.to_i
 	
@@ -67,20 +63,18 @@ def check_digit_generator10(isbn)
 	sum = 0
 	arr.each { |a| sum+=a }
 	sum = sum%11
-	if check == "x"||"X" && sum == 10
-		p "Valid"
-	elsif sum == check 
-		p "This Is A valid ISBN"
+	if sum == check 
+		true
 	else 
-		p "This Is Not A Valid ISBN"
+		false
 	end		
 end	
- p 	check_digit_generator10("080442957X")
+ # p 	check_digit_generator10("080442957X")
 
 def check_digit_13(isbn)
 	arr = []
 	sum = 0
-	isbn = isbn.chars
+	
 	check = isbn.pop.to_i
 	isbn.each_with_index do |x,y|
 		if (y+1) % 2 == 0
@@ -93,15 +87,15 @@ def check_digit_13(isbn)
 	sum = sum%10 
 	sum = (10-sum)
 	sum = sum%10
-	p check
-	p sum
 	if check == sum
-		p "valid check digit"
+		true
 	else 
-		p "not valid"	
+		false	
 	end	
 end
-p check_digit_13("9780470059029")
+
+	
+ p isbn_cleaner("877195869x")
 
 
 				
