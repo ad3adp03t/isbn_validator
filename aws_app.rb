@@ -30,7 +30,7 @@ require 'rubygems'
 require 'aws-sdk'
 require 'csv'
 load "./local_env.rb" 
-def push_b()
+def send_to_bucket(bucketlist)
   Aws::S3::Client.new(
   access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
@@ -38,16 +38,16 @@ def push_b()
    )
   file   = 'isbn.csv'
   write_to_file = File.open(file,"a")
-  write_to_file << 
-  bucket = 'mined-minds-isbn'
+  write_to_file << bucketlist + "\n"
+  write_to_file.close
+ 
   
   s3 = Aws::S3::Resource.new(region: 'us-east-2')
+  bucket = 'mined-minds-isbn'
   obj = s3.bucket(bucket).object(file)
+    File.open('isbn.csv', 'rb') do |file|
+      obj.put(body: file)
+    end  
  
-# # string data
-obj.put(body: '"some code here to show something being added to the bucket."+ "\n"')
+end
  
- #    obj.puts(body:'Hello World!')
-   
-  end
-  push_b()
