@@ -29,7 +29,7 @@
 require 'rubygems'
 require 'aws-sdk'
 require 'csv'
-load "./local_env.rb" 
+load './local_env.rb' if File.exist?('./local_env.rb') 
 def send_to_bucket(bucketlist)
   Aws::S3::Client.new(
   access_key_id: ENV['AWS_ACCESS_KEY_ID'],
