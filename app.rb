@@ -1,5 +1,6 @@
 require 'sinatra'
 require_relative "isbnapp.rb"
+require_relative "aws_app.rb"
 enable :sessions
 
 get '/'do
@@ -8,7 +9,7 @@ end
 post '/results' do
 	session[:isbn] = params[:isbn]
 	session[:isbn_result] = isbn_cleaner(session[:isbn])
-	session[:isbn_bucket] = push_to_bucket(sessions[:original], session[:isbn_results])
+	session[:isbn_bucket] = send_to_bucket(session[:isbn_results])
 	session[:get_file] = get_file()
 	redirect '/isbn_results'
 end	

@@ -23,7 +23,7 @@ end
 
 
 def alpha_check10(isbn)
-	isbn = original
+	original = isbn
 	upper = *("A".."Z")
 	lower = *("a".."z")
 	isbn = isbn.chars
@@ -35,7 +35,7 @@ def alpha_check10(isbn)
 	end	
 	 
 	if (upper-isbn).size == 26 && (lower-isbn).size == 26
-		check_digit_generator10(isbn)
+		check_digit_generator10(isbn, original)
 	else	
 		validity = false
 		bucketlist = original.to_s + ", "+ validity.to_s + "\n"
@@ -46,13 +46,13 @@ end
 # alpha_check10("12355679")
 
 def alpha_check13(isbn)
-	isbn = original
+	original = isbn
 	upper = *("A".."Z")
 	lower = *("a".."z")
 	isbn = isbn.chars
 	 
 	if (upper-isbn).size == 26&& (lower-isbn).size == 26
-		check_digit_13(isbn)
+		check_digit_13(isbn, original)
 	else	
 		validity = false
 		bucketlist = original.to_s + ", "+ validity.to_s + "\n"
