@@ -11,7 +11,9 @@ class TestISBN < Minitest::Test
   	end	
   	def test_if_arr
   		num ="123456"
-  		assert_equal(["1","2","3","4","5","6"],check_digit_generator(num))
+  		assert_equal(["1","2","3","4","5","6","7","8","9","2"],check_digit_generator10(num))
   	end	
+    def 
+
 
 end
