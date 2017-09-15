@@ -36,10 +36,11 @@ def push_b()
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
   region: ENV['AWS_REGION']
    )
-  # file = "output_isbn.csv"
-  # bucket = 'isbncsv'
-  bucket = 'mined-minds-isbn'
   file   = 'isbn.csv'
+  write_to_file = File.open(file,"a")
+  write_to_file << 
+  bucket = 'mined-minds-isbn'
+  
   s3 = Aws::S3::Resource.new(region: 'us-east-2')
   obj = s3.bucket(bucket).object(file)
  

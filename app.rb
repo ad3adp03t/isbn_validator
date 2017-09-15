@@ -4,4 +4,12 @@ enable :sessions
 
 get '/'do
 	erb :index
-end
+end	
+post '/results' do
+	session[:isbn] = params[:isbn]
+	redirect '/isbn_results'
+end	
+
+get '/isbn_results' do
+	erb :isbn_results, locals:{isbn: session[:isbn]}
+end	
