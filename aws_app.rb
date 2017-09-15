@@ -48,6 +48,23 @@ def send_to_bucket(bucketlist)
     File.open('isbn.csv', 'rb') do |file|
       obj.put(body: file)
     end  
- 
 end
+
+def get_file()
+  Aws::S3::Client.new
+  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+  region: ENV['AWS_REGION']
+   )
+  s3 = Aws::S3::Resource.new
+  csv_file_from_bucket = s3.get_object(bucket: 'mined-minds-isbn', key: 'isbn.csv')
+  csv_file_read = csv_file_from_bucket.body.read
+  p csv_file_read
+  split_csv = csv_file_read.split
+  list = []
+  split_csv.each do |item|
+    item.gsub(/"/, '')
+    list<< item
+  end
+end      
  
