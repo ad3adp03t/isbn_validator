@@ -67,6 +67,7 @@ def get_file()
         list << item
     end
     p list
+    list
 end
 
 # def get_file()

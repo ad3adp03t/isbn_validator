@@ -110,7 +110,7 @@ def check_digit_13(isbn, original)
 end
 
 	
- p isbn_cleaner("123456789x")
+ # p isbn_cleaner("123456789x")
 
 
 # bucketlist = isbn = ", "+ validity

@@ -1,3 +1,9 @@
+<center>
+<%= isbn %>
 <%if isbn_result == true%>
-<%= p "Valid Isbn"%>
+<%=  "Valid Isbn"%>
+<% else %>
+<%=  "Invalid Isbn"%>
 <%end%>
+<a href="/"> Enter Another Number </a> 
+</center>
